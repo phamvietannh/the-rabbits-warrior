@@ -6,7 +6,8 @@ import random
 
 #display the screen and decide the varrible
 pygame.init()
-width, height = 640, 480
+width = 600
+height = 500
 screen=pygame.display.set_mode((width, height))
 keys = [False, False, False, False]
 playerpos=[100,100]
@@ -16,6 +17,9 @@ badtimer=100
 badtimer1=0
 badguys=[[640,100]]
 healthvalue=194
+white = [255,255,255]
+black = [0,0,0]
+clock = pygame.time.clock()
 
 #For loading image
 player = pygame.image.load("dude.png")
@@ -29,16 +33,38 @@ health = pygame.image.load("health.png")
 gameover = pygame.image.load("gameover.png")
 youwin = pygame.image.load("youwin.png")
 
+def text_objects(text, font):
+    textSurface = font.render(text, True, black)
+    return textSurface, textSurface.get_rect()
+#intro
+def game_intro():
+  intro = True 
+  
+  while intro:
+    for event in pygame.event.get():
+      print(event)
+      if event.type == pygame.QUIT:
+        pygame.quit()
+        quit()
+    screen.fill(white)
+    letterText = pygame.font.Font('freesansbold.ttf',30)
+    TextSurf, TextRect = text_objects("Rabbit warrior",letterText  )
+    TextRect.center = ((width/2),(height/2))
+    screen.blit(TextSurf, TextRect)
+    pygame.display.update()
+    clock.tick(15)
+
+
 #Main loop
 running = 1
 exitcode = 0
 while running:
+    game_intro()
     badtimer-=1
     #Have a blank window
     screen.fill(0)
     #To intialise the castle
-    '''
-    for x in range(width/grass.get_width()+1):
+    '''for x in range(width/grass.get_width()+1):
          for y in range(height/grass.get_height()+1):
              screen.blit(grass,(x*100,y*100))'''
     screen.blit(castle,(0,30))

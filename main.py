@@ -19,7 +19,7 @@ badguys=[[640,100]]
 healthvalue=194
 white = [255,255,255]
 black = [0,0,0]
-clock = pygame.time.clock()
+clock = pygame.time.Clock()
 
 #For loading image
 player = pygame.image.load("dude.png")
@@ -48,8 +48,8 @@ def game_intro():
         quit()
     screen.fill(white)
     letterText = pygame.font.Font('freesansbold.ttf',30)
-    TextSurf, TextRect = text_objects("Rabbit warrior",letterText  )
-    TextRect.center = ((width/2),(height/2))
+    TextSurf, TextRect = text_objects("Rabbit warrior",letterText)
+    TextRect.center = ((width/3),(height/2))
     screen.blit(TextSurf, TextRect)
     pygame.display.update()
     clock.tick(15)
